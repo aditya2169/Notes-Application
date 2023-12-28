@@ -4,7 +4,7 @@ const getNotes=require("./notes.js");
 
 yargs.version('1.1.0'); // customise yargs version 
 
-// add , remove ,read ,list ,notes 
+// add , remove ,read ,list ,notes ..
 
 // create add command
 yargs.command({
