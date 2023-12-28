@@ -1,5 +1,13 @@
-const fs_module=require("fs");
+//const validator=require('validator');
+const getNotes=require("./notes.js");
+const chalk=require('chalk');
 
-fs_module.writeFileSync('notes.txt','this file was created by nodejs!!!');
+console.log(getNotes());
+//console.log(validator.isEmail('adigmail.com'));
+//console.log(validator.isURL('googlecom'));
+console.log(chalk.green.bgRed.bold('Success!!!'));
 
-fs_module.appendFileSync('notes.txt','  this message was appended!!!');
+
+
+
+
