@@ -1,6 +1,6 @@
 const chalk=require('chalk');
 const yargs=require('yargs');
-const getNotes=require("./notes.js");
+const notes_utils=require("./notes.js");
 
 yargs.version('1.1.0'); // customise yargs version 
 
@@ -23,8 +23,7 @@ yargs.command({
         }
     },
     handler: function(argv){
-        console.log('tittle : ',argv.title);
-        console.log('body is :',argv.body);
+        notes_utils.addNote(argv.title,argv.body);
     }
 })
 
@@ -32,8 +31,17 @@ yargs.command({
 yargs.command({
     command:'remove',
     describe:'remove a note',
-    handler: function(){
-        console.log('removeing a note');
+
+    builder:{
+        title:{
+            describe:"Note title to be removed",
+            demandOption:true,
+            typeof:'string'
+        }
+    },
+
+    handler: function(argv){
+        notes_utils.removeNote(argv.title);
     }
 })
 
