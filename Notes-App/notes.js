@@ -8,9 +8,12 @@ const getNotes= ()=>{
 const addNote = (title,body)=>{
     const notes=loadNotes();
 
-    const duplicate_notes=notes.filter((note) => title==note.title)
+    //const duplicate_notes=notes.filter((note) => title==note.title) 
+    const duplicate_note=notes.find((note)=> note.title ===title)
 
-    if(duplicate_notes.length===0){
+    
+
+    if(!duplicate_note){
         notes.push({
             title:title,
             body:body
@@ -26,7 +29,7 @@ const addNote = (title,body)=>{
 
 const saveNotes=(notes)=>{
     const notes_to_save_string = JSON.stringify(notes);
-    fs.writeFileSync('notes.json',notes_to_save_string);
+    fs.writeFileSync('notes.json',notes_to_save_string1);
 }
 
 const loadNotes=()=>{
@@ -47,6 +50,19 @@ const listNote = () =>{
     notes.forEach((element) => {
         console.log(element.title);
     });
+}
+
+const readNote = (title)=>{
+    const notes = loadNotes();
+    
+    const find_note=notes.find((element)=> element.title===title)
+    if(find_note){
+        console.log(chalk.bgGreen(find_note.title));
+        console.log(find_note.body);
+    }
+    else{
+        console.log(chalk.red('ERROR!!'));
+    }
 }
 
 const removeNote=(title)=>{
@@ -72,5 +88,6 @@ module.exports={
     getNotes: getNotes,
     addNote: addNote,
     removeNote:removeNote,
-    listNote:listNote
+    listNote:listNote,
+    readNote:readNote
 };
